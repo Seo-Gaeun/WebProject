@@ -10,7 +10,9 @@ const ExpenseUpdate = ({ editingExpense, setEditingExpense, updateExpense}) => {
    
   const handleUpdate = (e) => {
     e.preventDefault();
-    updateExpense(updatedExpense);
+    if (!editingExpense.date || !editingExpense.title || !editingExpense.amount || !editingExpense.category || editingExpense.category == '분류') {
+        alert('모든 필드를 입력하세요.');}
+    else updateExpense(updatedExpense);
   }
     return (                    // MonthFilter 재사용
         <div>
@@ -56,15 +58,6 @@ const ExpenseUpdate = ({ editingExpense, setEditingExpense, updateExpense}) => {
                             <option value="취미생활">취미생활</option>
                             <option value="보험료">보험료</option>
                     </select>
-                    {/* <input 
-                        type='text' 
-                        value={editingExpense.category} 
-                        onChange={(e) => 
-                            setEditingExpense({...editingExpense, category: e.target.value})
-                        } 
-                        placeholder='분류' 
-                    />
-                    &emsp; */}
                     <button type='submit' style={{ fontSize: 15 }}>
                         Update
                     </button>
